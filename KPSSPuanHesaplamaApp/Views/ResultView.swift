@@ -9,7 +9,14 @@ import SwiftUI
 
 struct ResultView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationStack {
+            VStack {
+                List(0 ..< 20) { item in
+                        Text("Hesaplama")
+                }
+            }
+            .navigationTitle("Geçmiş Hesaplamalar")
+        }
     }
 }
 

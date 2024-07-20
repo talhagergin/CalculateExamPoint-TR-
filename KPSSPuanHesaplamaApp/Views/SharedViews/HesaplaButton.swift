@@ -8,11 +8,24 @@
 import SwiftUI
 
 struct HesaplaButton: View {
+    let title: String
+    let action: () -> Void
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        Button(action: {
+            action()
+        },label:{
+            Label(title, systemImage: "plus.forwardslash.minus")
+                .font(.title)
+                .foregroundStyle(.white)
+                .frame(maxWidth: .infinity)
+        })
+        .buttonStyle(.borderedProminent)
+        .tint(.main) // renk verdik butona
     }
 }
 
 #Preview {
-    HesaplaButton()
+    HesaplaButton(title: "Hesapla", action: {
+        print("hesapla")
+    })
 }
