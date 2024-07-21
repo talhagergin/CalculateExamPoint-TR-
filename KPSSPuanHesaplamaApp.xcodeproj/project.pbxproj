@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A3902052C4D4B3B007F9CC7 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3902042C4D4B3B007F9CC7 /* Result.swift */; };
+		0A3902092C4D4CD1007F9CC7 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A3902082C4D4CD1007F9CC7 /* Constants.swift */; };
 		0A68FAD42C4560D300685DFC /* KPSSPuanHesaplamaAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A68FAD32C4560D300685DFC /* KPSSPuanHesaplamaAppApp.swift */; };
 		0A68FAD62C4560D300685DFC /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A68FAD52C4560D300685DFC /* RootView.swift */; };
 		0A68FAD82C4560D500685DFC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A68FAD72C4560D500685DFC /* Assets.xcassets */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A3902042C4D4B3B007F9CC7 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		0A3902082C4D4CD1007F9CC7 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		0A68FAD02C4560D300685DFC /* KPSSPuanHesaplamaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = KPSSPuanHesaplamaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		0A68FAD32C4560D300685DFC /* KPSSPuanHesaplamaAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KPSSPuanHesaplamaAppApp.swift; sourceTree = "<group>"; };
 		0A68FAD52C4560D300685DFC /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
@@ -50,6 +54,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A3902032C4D4B28007F9CC7 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				0A3902042C4D4B3B007F9CC7 /* Result.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		0A3902072C4D4CBF007F9CC7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				0A3902082C4D4CD1007F9CC7 /* Constants.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		0A68FAC72C4560D300685DFC = {
 			isa = PBXGroup;
 			children = (
@@ -69,6 +89,8 @@
 		0A68FAD22C4560D300685DFC /* KPSSPuanHesaplamaApp */ = {
 			isa = PBXGroup;
 			children = (
+				0A3902072C4D4CBF007F9CC7 /* Helpers */,
+				0A3902032C4D4B28007F9CC7 /* Model */,
 				0A68FAE22C4562E700685DFC /* Resources */,
 				0A68FAE12C4562E200685DFC /* Views */,
 				0A68FAD72C4560D500685DFC /* Assets.xcassets */,
@@ -195,6 +217,8 @@
 				0A68FAD62C4560D300685DFC /* RootView.swift in Sources */,
 				0A68FAE82C4569AF00685DFC /* OrtaogretimView.swift in Sources */,
 				0A68FAE62C45630E00685DFC /* ResultView.swift in Sources */,
+				0A3902052C4D4B3B007F9CC7 /* Result.swift in Sources */,
+				0A3902092C4D4CD1007F9CC7 /* Constants.swift in Sources */,
 				0A68FAEA2C4569B800685DFC /* OnlisansView.swift in Sources */,
 				0A68FAE42C45630400685DFC /* MainView.swift in Sources */,
 				0A68FAD42C4560D300685DFC /* KPSSPuanHesaplamaAppApp.swift in Sources */,

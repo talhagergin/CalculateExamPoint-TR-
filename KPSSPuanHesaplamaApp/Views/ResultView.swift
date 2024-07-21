@@ -1,25 +1,113 @@
 //
 //  ResultView.swift
-//  KPSSPuanHesaplamaApp
+//  KPSS Puan Hesaplama
 //
-//  Created by Talha Gergin on 15.07.2024.
+//  Created by Fatih Durmaz on 30.01.2024.
 //
 
 import SwiftUI
+import SwiftData
 
 struct ResultView: View {
+    @Environment(\.modelContext) private var modelContext
+    @Query(sort: \Result.tarih, order: .reverse) private var results: [Result]
+    @Binding var selectionTabItem: Int
+    
     var body: some View {
         NavigationStack {
             VStack {
-                List(0 ..< 20) { item in
-                        Text("Hesaplama")
+                List {
+                    Section {
+                        ForEach(results){ result in
+                            VStack(alignment: .leading) {
+                                Text(result.sinavAdi)
+                                    .bold()
+                                    .font(.headline)
+                                HStack {
+                                    HStack(alignment: .top){
+                                        Text("Genel Yetenek:")
+                                        Text(result.gyNet.formatted())
+                                    }
+                                    Spacer()
+                                    HStack(alignment: .top){
+                                        Text("ÖABT:")
+                                        Text((result.oabtNet ?? 0).formatted())
+                                    }
+                                }
+                                
+                                HStack {
+                                    HStack{
+                                        Text("Genel Kültür:")
+                                        Text(result.gyNet.formatted())
+                                    }
+                                    Spacer()
+                                    HStack{
+                                        Text("Eğitim Bilimleri:")
+                                        Text((result.ebNet ?? 0).formatted())
+                                    }
+                                }
+                                
+                                HStack {
+                                    Text("Puan:")
+                                    Text(result.sonuc.formatted())
+                                        .bold()
+                                        .italic()
+                                }
+                                
+                                HStack {
+                                    Spacer()
+                                    Text(result.tarih.formatted(date:.complete, time:.omitted))
+                                        .italic()
+                                        .font(.footnote)
+                                }
+                                
+                            }
+                        }
+                        .onDelete{ indexSet in
+                            for index in indexSet{
+                                modelContext.delete(results[index])
+                            }
+                        }
+                    } header: {
+                        Text("")
+                    }
+                    
                 }
+                .overlay{
+                        if results.isEmpty {
+                            ContentUnavailableView {
+                                Label("Sonuç Bulunamadı", systemImage: "magnifyingglass")
+                                    .labelStyle(.titleOnly)
+                            } description: {
+                                VStack {
+                                    Text("Puan hesaplamaya başlamak için lütfen başlangıç sekmesini kullanın.")
+                                        .italic()
+                                }
+                                
+                            } actions: {
+                                Button(action: {
+                                    selectionTabItem = 0
+                                }, label: {
+                                    Text("KPSS Puan Hesaplaması Yap")
+                                        .bold()
+                                        .font(.title3)
+                                        .padding()
+                                })
+                                .buttonStyle(.bordered)
+                            }
+                            
+                        }
+                }
+                
             }
-            .navigationTitle("Geçmiş Hesaplamalar")
+            .navigationTitle("Hesaplamalar")
+            .toolbar {
+                EditButton()
+            }
         }
     }
 }
 
 #Preview {
-    ResultView()
+    ResultView(selectionTabItem: .constant(1))
 }

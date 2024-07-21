@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OnlisansView: View {
+    @Environment(\.modelContext) private var modelContext
     @State private var gkDogruSayisi:Double = 20
     @State private var gkYanlisSayisi:Double = 0
     
@@ -59,9 +60,13 @@ struct OnlisansView: View {
                         let gkNet = gkDogruSayisi - (gkYanlisSayisi / 4)
                         let gyNet = gyDogruSayisi - (gyYanlisSayisi / 4)
                         
-                        withAnimation{
-                            sonuc = (53.816 + gyNet * 0.43 + gkNet * 0.397)
+                        withAnimation {
+                            sonuc = Constants.onlisansPuan + gyNet * Constants.onlisansGYKatsayi + gkNet * Constants.onlisansGKKatsayi
                         }
+                        
+                        //  SwiftData
+                        let result = Result(sinavAdi: "2022 Önlisans KPSS", gyNet: gyNet, gkNet: gkNet, sonuc: sonuc)
+                        modelContext.insert(result)
                         
                     }
                     .disabled(formKontrol)

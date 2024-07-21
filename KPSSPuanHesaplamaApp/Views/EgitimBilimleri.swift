@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct EgitimBilimleri: View {
+    @Environment(\.modelContext) private var  modelContext
     @State private var gkDogruSayisi:Double = 20
     @State private var gkYanlisSayisi:Double = 0
     
@@ -76,12 +77,19 @@ struct EgitimBilimleri: View {
                         let gyNet = gyDogruSayisi - (gyYanlisSayisi / 4)
                         let ebNet = ebDogruSayisi - (ebYanlisSayisi / 4)
                         
-                        sonucEB2022 = 36.812 + gyNet * 0.3985 + gkNet * 0.397 + ebNet * 0.3474
-                        sonuc2022 = 48.616 + gyNet * 0.4756 + gkNet * 0.4192
+                        sonucEB2022   = Constants.eb2022Puan + gyNet * Constants.eb2022GYKatsayi + gkNet * Constants.eb2022GKKatsayi + ebNet * Constants.eb2022Katsayi
+                        sonuc2022     = Constants.lisans2022Puan + gyNet * Constants.lisans2022GYKatsayi + gkNet * Constants.lisans2022GKKatsayi
+                        sonucEB2023   = Constants.eb2023Puan + gyNet * Constants.eb2023GYKatsayi + gkNet * Constants.eb2023GKKatsayi + ebNet * Constants.eb2023Katsayi
+                        sonuc2023     = Constants.lisans2023Puan + gyNet * Constants.lisans2023GYKatsayi + gkNet * Constants.lisans2023GKKatsayi
                         
-                        sonucEB2023 = 40.485 + gyNet * 0.3493 + gkNet * 0.3672 + ebNet * 0.37145
-                        sonuc2023 = 51.209 + gyNet * 0.537 + gkNet * 0.418
                         isShowingSheet.toggle()
+                        
+                        // SwiftData
+                        let result2022EB = Result(sinavAdi: "2022 Eğitim Bilimleri", gyNet: gyNet, gkNet: gkNet, ebNet: ebNet, sonuc: sonucEB2022)
+                        let result2023EB = Result(sinavAdi: "2023 Eğitim Bilimleri", gyNet: gyNet, gkNet: gkNet, ebNet: ebNet, sonuc: sonucEB2023)
+                        
+                        modelContext.insert(result2022EB)
+                        modelContext.insert(result2023EB)
                         
                     }
                     .disabled(formKontrol)
@@ -103,6 +111,7 @@ struct EgitimBilimleri: View {
             }
         }
         .navigationTitle("Eğitim Bilimleri")
+        .toolbar(.hidden, for: .tabBar)
     }
     var formKontrol: Bool{
         if((ebDogruSayisi + ebYanlisSayisi) > 80 || (gyDogruSayisi + gyYanlisSayisi) > 60 || (gkDogruSayisi + gkYanlisSayisi) > 60 ){

@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MainView: View {
+    @Binding var selectionTabItem: Int
     var body: some View {
         NavigationStack {
             VStack {
@@ -95,5 +96,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(selectionTabItem: .constant(0))
 }
