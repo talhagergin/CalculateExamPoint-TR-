@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AppTrackingTransparency
 
 struct RootView: View {
     @State private var selectionItem = 0
@@ -26,6 +27,10 @@ struct RootView: View {
                 .tag(1)
         }
         .tint(.black) //tab viewdaki iconların rengini değiştirir.
+        .onReceive(NotificationCenter.default.publisher(for: UIApplication.didBecomeActiveNotification)){_ in
+            ATTrackingManager.requestTrackingAuthorization(completionHandler: {status in })
+            
+        }
     }
 }
 

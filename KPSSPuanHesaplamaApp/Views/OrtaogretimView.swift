@@ -16,6 +16,11 @@ struct OrtaogretimView: View {
     @State private var gyYanlisSayisi:Double = 0
     
     @State private var sonuc:Double = 0
+    
+    let adCoordinator = AdCoordinator()
+    init(){
+        adCoordinator.loadAd()
+    }
     var body: some View {
         VStack {
             Form{
@@ -67,6 +72,10 @@ struct OrtaogretimView: View {
                         // SwiftData
                         let result = Result(sinavAdi: "2022 Ortaöğretim KPSS", gyNet: gyNet, gkNet: gkNet, sonuc: sonuc)
                         modelContext.insert(result)
+                        
+                        //adMob
+                        adCoordinator.presentAd()
+                        
                         
                     }
                     .disabled(formKontrol)

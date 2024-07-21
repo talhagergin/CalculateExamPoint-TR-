@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-
+import GoogleMobileAds
 struct MainView: View {
     @Binding var selectionTabItem: Int
     var body: some View {
@@ -89,6 +89,8 @@ struct MainView: View {
                             .textCase(.none)
                     }
                 }
+                BannerView()
+                    .frame(width: GADAdSizeBanner.size.width, height: GADAdSizeBanner.size.height)
             }
             .navigationTitle("KPSS Puan Hesaplama")
         }
