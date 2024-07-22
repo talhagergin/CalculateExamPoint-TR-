@@ -5,11 +5,10 @@ import UIKit
 struct BannerView: UIViewControllerRepresentable {
     @State private var viewWidth: CGFloat = .zero
     private let bannerView = GADBannerView(adSize: GADAdSizeBanner) // Ad size burada belirtiliyor
-    private let adUnitID = "ca-app-pub-2025425313677693/5987384619" // Reklam Birimi Identifier
     
     func makeUIViewController(context: Context) -> some UIViewController {
         let bannerViewController = BannerViewController()
-        bannerView.adUnitID = adUnitID
+        bannerView.adUnitID = Constants.bannerUnitID
         bannerView.rootViewController = bannerViewController
         bannerView.delegate = context.coordinator
         bannerView.translatesAutoresizingMaskIntoConstraints = false

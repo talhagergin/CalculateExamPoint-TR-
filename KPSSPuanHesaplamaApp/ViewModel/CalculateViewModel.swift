@@ -6,3 +6,10 @@
 //
 
 import Foundation
+import Observation
+import SwiftUI
+
+@Observable
+class CalculateViewModel{
+   @ObservationIgnored @AppStorage("calculateCount") var calculateCount = 1 //cihazda veri tutmak için
+}

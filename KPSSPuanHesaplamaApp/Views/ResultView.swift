@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SwiftData
+import Lottie
 
 struct ResultView: View {
     @Environment(\.modelContext) private var modelContext
@@ -81,7 +82,11 @@ struct ResultView: View {
                             } description: {
                                 VStack {
                                     Text("Puan hesaplamaya başlamak için lütfen başlangıç sekmesini kullanın.")
-                                        .italic()
+                                    
+                                    LottieView(animation: .named("notfound"))
+                                        .looping()
+                                        .frame(width: 200, height: 200)
+                                        .shadow(radius: 10)
                                 }
                                 
                             } actions: {

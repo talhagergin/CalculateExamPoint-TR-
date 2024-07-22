@@ -16,7 +16,7 @@ struct OrtaogretimView: View {
     @State private var gyYanlisSayisi:Double = 0
     
     @State private var sonuc:Double = 0
-    
+    @State private var viewModel = CalculateViewModel()
     let adCoordinator = AdCoordinator()
     init(){
         adCoordinator.loadAd()
@@ -74,9 +74,11 @@ struct OrtaogretimView: View {
                         modelContext.insert(result)
                         
                         //adMob
-                        adCoordinator.presentAd()
                         
-                        
+                        if viewModel.calculateCount % 8 == 0{
+                            adCoordinator.presentAd()
+                        }
+                        viewModel.calculateCount += 1
                     }
                     .disabled(formKontrol)
                 }header: {
