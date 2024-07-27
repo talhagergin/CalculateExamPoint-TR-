@@ -1,13 +1,5 @@
 //
 //  Constants.swift
-<<<<<<< HEAD
-//  KPSSPuanHesaplamaApp
-//
-//  Created by Talha Gergin on 21.07.2024.
-//
-
-import Foundation
-=======
 //  KPSS Puan Hesaplama
 //
 //  Created by Fatih Durmaz on 8.02.2024.
@@ -53,5 +45,6 @@ final class Constants {
     static let oabt2022GKKatsayi = 0.1515
     static let oabt2022EBKatsayi = 0.1498
     
+    static let bannerUnitID = "ca-app-pub-3940256099942544/2934735716"
+    static let interstitialUnitID = "ca-app-pub-3940256099942544/4411468910"
 }
->>>>>>> adMob

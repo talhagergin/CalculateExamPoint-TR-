@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct OrtaogretimView: View {
+    @Environment(\.modelContext) private var modelContext
     @State private var gkDogruSayisi:Double = 20
     @State private var gkYanlisSayisi:Double = 0
     
@@ -15,6 +16,11 @@ struct OrtaogretimView: View {
     @State private var gyYanlisSayisi:Double = 0
     
     @State private var sonuc:Double = 0
+    @State private var viewModel = CalculateViewModel()
+    let adCoordinator = AdCoordinator()
+    init(){
+        adCoordinator.loadAd()
+    }
     var body: some View {
         VStack {
             Form{
@@ -59,10 +65,20 @@ struct OrtaogretimView: View {
                         let gkNet = gkDogruSayisi - (gkYanlisSayisi / 4)
                         let gyNet = gyDogruSayisi - (gyYanlisSayisi / 4)
                         
-                        withAnimation{
-                            sonuc = 55.839 + gyNet *  0.348 + gkNet * 0.431
+                        withAnimation {
+                            sonuc = Constants.ortaogretimPuan + gyNet * Constants.ortaogretimGYKatsayi + gkNet * Constants.ortaogretimGKKatsayi
                         }
                         
+                        // SwiftData
+                        let result = Result(sinavAdi: "2022 Ortaöğretim KPSS", gyNet: gyNet, gkNet: gkNet, sonuc: sonuc)
+                        modelContext.insert(result)
+                        
+                        //adMob
+                        
+                        if viewModel.calculateCount % 8 == 0{
+                            adCoordinator.presentAd()
+                        }
+                        viewModel.calculateCount += 1
                     }
                     .disabled(formKontrol)
                 }header: {

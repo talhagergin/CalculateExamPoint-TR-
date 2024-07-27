@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct LisansView: View {
+    @Environment(\.modelContext) private var modelContext
+    
     @State private var gkDogruSayisi:Double = 20
     @State private var gkYanlisSayisi:Double = 0
     
@@ -62,10 +64,15 @@ struct LisansView: View {
                         let gkNet = gkDogruSayisi - (gkYanlisSayisi / 4)
                         let gyNet = gyDogruSayisi - (gyYanlisSayisi / 4)
                         
-                        withAnimation{
-                            sonuc2023 = 51.209 + gyNet * 0.537 + gkNet * 0.418
-                            sonuc2022 = 48.616 + gyNet * 0.4756 + gkNet * 0.4192
-                        }
+                        withAnimation {
+                                        sonuc2023 = Constants.lisans2023Puan + gyNet * Constants.lisans2023GYKatsayi + gkNet * Constants.lisans2023GKKatsayi
+                                        sonuc2022 = Constants.lisans2022Puan + gyNet * Constants.lisans2022GYKatsayi + gkNet * Constants.lisans2022GKKatsayi
+                                    }
+                        // SwiftData
+                        let result2022 = Result(sinavAdi: "2022 Lisans KPSS", gyNet: gyNet, gkNet: gkNet, sonuc: sonuc2022)
+                        let result2023 = Result(sinavAdi: "2023 Lisans KPSS", gyNet: gyNet, gkNet: gkNet, sonuc: sonuc2023)
+                        modelContext.insert(result2022)
+                        modelContext.insert(result2023)
                         
                     }
                     .disabled(formKontrol)

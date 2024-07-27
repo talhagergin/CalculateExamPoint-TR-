@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
-
+import GoogleMobileAds
 struct MainView: View {
+    @Binding var selectionTabItem: Int
+    var width: CGFloat = UIScreen.main.bounds.width // ekranın boyutunu aldık
+    var size: CGSize{
+        return GADCurrentOrientationInlineAdaptiveBannerAdSizeWithWidth(width).size
+    }
     var body: some View {
         NavigationStack {
             VStack {
@@ -88,6 +93,8 @@ struct MainView: View {
                             .textCase(.none)
                     }
                 }
+                BannerView()
+                    .frame(height: size.height)
             }
             .navigationTitle("KPSS Puan Hesaplama")
         }
@@ -95,5 +102,5 @@ struct MainView: View {
 }
 
 #Preview {
-    MainView()
+    MainView(selectionTabItem: .constant(0))
 }
